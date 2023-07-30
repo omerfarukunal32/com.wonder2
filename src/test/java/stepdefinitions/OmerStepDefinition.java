@@ -93,6 +93,30 @@ public class OmerStepDefinition {
     }
 
 
+    @Given("Sing in on the Teacher Admin and go to Todays Birthday window")
+    public void sing_in_on_the_teacher_admin_and_go_to_todays_birthday_window() {
+        omerPage.goTodaysBirthdayOnComposePageMethod();
+    }
+
+    @Given("Verify that messages can be sent to those who have a birthday today.")
+    public void verify_that_messages_can_be_sent_to_those_who_have_a_birthday_today() {
+        omerPage.verifySendMessagesHaveBirthdayTodayMethod();
+    }
+
+
+    @Given("Select any Person and send to message an instant")
+    public void select_any_person_and_send_to_message_an_instant() {
+        omerPage.sendNowMessageOnComposePageMethod();
+    }
+
+    @Given("Send a future date message to the selected person")
+    public void send_a_future_date_message_to_the_selected_person() {
+        omerPage.sendToMessageFutureDateToPerson();
+    }
+
+
+
+
 
     /*
     Feature: [US_38] It should be verified that the functions under the Communicate menu title in the sidebar of the Teacher Panel are working properly.

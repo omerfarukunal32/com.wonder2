@@ -240,6 +240,7 @@ public class OmerPage extends Base{
     @FindBy(xpath = "//select[@id='template_id']")
     private WebElement emailTemplateDropDownMenuOnCommunicate;
 
+
     //    //input[@id='group_title']
     @FindBy(xpath = "//input[@id='group_title']")
     private WebElement titleBoxOnCommunicate;
@@ -294,6 +295,10 @@ public class OmerPage extends Base{
     @FindBy(xpath = "//*[@id='student-2']/i[2]")
     private WebElement deleteButtonMessageToInIndividual;
 
+    //  //*[@id="individual_form"]/div[2]/div/div/div/button
+    @FindBy(xpath = "//*[@id='individual_form']/div[2]/div/div/div/button")
+    private WebElement submitButtonMessageToInIndividual;
+
 
     // Class Menu
     @FindBy(xpath = "/html/body/div[2]/div[1]/section[2]/div/div/div/ul/li[2]")
@@ -309,7 +314,39 @@ public class OmerPage extends Base{
     private WebElement AClass13CheckBox;
 
 
+    // ----------------------- Today's Birthday------------------------------
+    @FindBy(xpath = "//*[@data-toggle='tab'][1]")
+    private WebElement todaysBirthdayButtonOnComposePage;
 
+    @FindBy(xpath = "//*[text()=' Send']")
+    private WebElement submitButtonOnTodaysBirthday;
+
+    @FindBy(id = "birthday_email_template")
+    private WebElement dropBoxBirthdayTemplateEmail;
+
+
+    // ------------------  send message ----------------------------
+    @FindBy(xpath = "//*[text()=' Send']")
+    private WebElement scheduleButtonOnComposePage;
+
+    @FindBy(xpath = "//*[@value='send_now']")
+    private WebElement sendNowButtonOnComposePage;
+
+    @FindBy(xpath = "//*[text()='Message Sent Successfully']")
+    private WebElement toastMessageSuccessfully;
+
+    @FindBy(xpath = "//*[@id='individual_email_template']")
+    private WebElement emailTemplateDropBoxIndividual;
+
+    @FindBy(xpath = "//*[@id='individual_form']/div[2]/div/div/div/label[2]/input")
+    private WebElement scheduleButtonIndividualOnComposePage;
+
+    // //*[@id="basic-addon2"]/i
+    @FindBy(xpath = "//*[@id='basic-addon2']/i")
+    private WebElement scheduleNextButtonDateOnComposePage;
+
+    @FindBy(id = "schedule_date_time")
+    private WebElement scheduleBox;
 
     // =========================== [US_37] Methods ===================================
 
@@ -386,6 +423,74 @@ public class OmerPage extends Base{
         //select.selectByIndex(1);
         AClass13CheckBox.click();
         Assert.assertTrue(AClass13CheckBox.isEnabled());
+        Driver.quitDriver();
+    }
+
+    public void goTodaysBirthdayOnComposePageMethod(){
+        teacherLoginMethod("omer.faruk.unal@teacher.wonderworldcollege.com","wonderworld123");
+        communicateMenuOnSidebar.click();
+        sendMailOnSidebar.click();
+        todaysBirthdayButtonOnComposePage.click();
+    }
+
+    public void verifySendMessagesHaveBirthdayTodayMethod(){
+        dropBoxBirthdayTemplateEmail.click();
+        Select select = new Select(dropBoxBirthdayTemplateEmail);
+        select.selectByIndex(1);
+
+        Assert.assertTrue(submitButtonOnTodaysBirthday.isEnabled());
+        Driver.quitDriver();
+    }
+
+    public void sendNowMessageOnComposePageMethod(){
+        goToIndividualOnSendMailPage();
+        dropboxOnMessageToInIndividual.click();
+        studentDropBoxMenuOnIndividual.click();
+        Actions actions = new Actions(Driver.getDriver());
+
+        textBoxMessageToInIndividual.sendKeys("Robin");
+        ReusableMethods.bekle(1);
+        actions.click(studentRobinPeterson).perform();
+        addButtonMessageToInIndividual.click();
+
+        emailTemplateDropBoxIndividual.click();
+        Select select = new Select(emailTemplateDropBoxIndividual);
+        select.selectByIndex(1);
+        ReusableMethods.bekle(2);
+
+        submitButtonMessageToInIndividual.click();
+        Assert.assertTrue(toastMessageSuccessfully.isDisplayed());
+        // Driver.quitDriver();
+
+    }
+
+    public void sendToMessageFutureDateToPerson(){
+        //teacherLoginMethod("omer.faruk.unal@teacher.wonderworldcollege.com","wonderworld123");
+        //communicateMenuOnSidebar.click();
+        sendMailOnSidebar.click();
+        individualButtonOnSendEmailPage.click();
+        dropboxOnMessageToInIndividual.click();
+        studentDropBoxMenuOnIndividual.click();
+        Actions actions = new Actions(Driver.getDriver());
+
+        textBoxMessageToInIndividual.sendKeys("Robin");
+        ReusableMethods.bekle(2);
+        actions.click(studentRobinPeterson).perform();
+        addButtonMessageToInIndividual.click();
+
+        emailTemplateDropBoxIndividual.click();
+        Select select = new Select(emailTemplateDropBoxIndividual);
+        select.selectByIndex(1);
+
+        scheduleButtonIndividualOnComposePage.click();
+        actions.sendKeys(scheduleBox).perform();
+        scheduleBox.sendKeys("01/10/2024 07:56 pm");
+
+        ReusableMethods.bekle(2);
+
+        submitButtonMessageToInIndividual.click();
+        Assert.assertTrue(toastMessageSuccessfully.isDisplayed());
+
         Driver.quitDriver();
     }
 
