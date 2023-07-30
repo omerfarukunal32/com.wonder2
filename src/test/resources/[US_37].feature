@@ -43,11 +43,17 @@ Feature: [US_37] As an administrator (teacher), I want a page where I can create
     * Verify email Template, titleBox and messageBox on the compose page
     * Verify selectability of checkboxes
 
-  @omer
+
   Scenario: [TC_02-->US_38] Verify Verifying that the functions in the Individual section of the Send Main page
 
     * Sign in on the Teacher Admin and go to Individual
     * Verify that any student can be selected and deleted from the list again
+
+  @omer
+  Scenario: [TC_03-->US_38] Verify that classes can be selected to send messages.
+
+    * Sign in on the Teacher Admin and go to Class Menu
+    * Verify that classes can be selected to send messages
 
 
 

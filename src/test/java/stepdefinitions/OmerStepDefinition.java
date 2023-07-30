@@ -83,6 +83,15 @@ public class OmerStepDefinition {
         omerPage.addStudentToMassageAndDeleteMethod();
     }
 
+    @Given("Sign in on the Teacher Admin and go to Class Menu")
+    public void sign_in_on_the_teacher_admin_and_go_to_class_menu() {
+        omerPage.goToClassMenuOnComposePageMethod();
+    }
+    @Given("Verify that classes can be selected to send messages")
+    public void verify_that_classes_can_be_selected_to_send_messages() {
+        omerPage.selectToClassOnComposePageMethod();
+    }
+
 
 
     /*

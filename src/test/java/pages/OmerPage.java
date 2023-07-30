@@ -122,6 +122,11 @@ public class OmerPage extends Base{
 
 
 
+
+
+
+
+
     // =========================== [US_37] Methods ===================================
 
     public void teacherLoginMethod (String teacherEmail, String teacherPassword){
@@ -290,6 +295,20 @@ public class OmerPage extends Base{
     private WebElement deleteButtonMessageToInIndividual;
 
 
+    // Class Menu
+    @FindBy(xpath = "/html/body/div[2]/div[1]/section[2]/div/div/div/ul/li[2]")
+    private WebElement classButtonOnComposePage;
+
+    @FindBy(id = "class_id")
+    private WebElement dropBoxMessageToInClassMenu;
+
+    @FindBy(xpath = "//*[@id='class_id']/option[14]")
+    private WebElement class13InDropBoxOnClass;
+
+    @FindBy(xpath = "//*[text()='A']")
+    private WebElement AClass13CheckBox;
+
+
 
 
     // =========================== [US_37] Methods ===================================
@@ -349,6 +368,26 @@ public class OmerPage extends Base{
         Driver.quitDriver();
     }
 
+    public void goToClassMenuOnComposePageMethod(){
+        teacherLoginMethod("omer.faruk.unal@teacher.wonderworldcollege.com","wonderworld123");
+        communicateMenuOnSidebar.click();
+        sendMailOnSidebar.click();
+        classButtonOnComposePage.click();
+
+    }
+
+    public void selectToClassOnComposePageMethod(){
+        dropBoxMessageToInClassMenu.click();
+        Select select = new Select(dropBoxMessageToInClassMenu);
+        select.selectByVisibleText("Class 13");
+        classButtonOnComposePage.click();
+        //Actions actions = new Actions(Driver.getDriver());
+        //actions.click(class13InDropBoxOnClass).perform();
+        //select.selectByIndex(1);
+        AClass13CheckBox.click();
+        Assert.assertTrue(AClass13CheckBox.isEnabled());
+        Driver.quitDriver();
+    }
 
 
 
