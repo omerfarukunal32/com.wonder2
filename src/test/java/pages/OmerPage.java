@@ -232,6 +232,62 @@ public class OmerPage extends Base{
     @FindBy(xpath = "//*[@id='sibe-box']/ul[2]/li[7]/ul/li[2]/a/i")
     private WebElement sendMailOnSidebar;
 
+    @FindBy(xpath = "//select[@id='template_id']")
+    private WebElement emailTemplateDropDownMenuOnCommunicate;
+
+    //    //input[@id='group_title']
+    @FindBy(xpath = "//input[@id='group_title']")
+    private WebElement titleBoxOnCommunicate;
+
+    //   //*[@id="cke_1_contents"]/iframe
+    @FindBy(id = "cke_1_contents")
+    private WebElement messageBoxOnCommunicate;
+
+    //  //input[@value='student']
+    @FindBy(xpath = "//input[@value='student']")
+    private WebElement checkBoxStudentsOnCommunicate;
+
+    @FindBy(xpath = "//input[@value='parent']")
+    private WebElement checkBoxGuardiansOnCommunicate;
+
+    @FindBy(xpath = "//input[@value='1']")
+    private WebElement checkBoxAdminOnCommunicate;
+
+    @FindBy(xpath = "//input[@value='2']")
+    private WebElement checkBoxTeacherOnCommunicate;
+
+    @FindBy(xpath = "//input[@value='3']")
+    private WebElement checkBoxAccountantOnCommunicate;
+
+    @FindBy(xpath = "//input[@value='4']")
+    private WebElement checkBoxLibrarianOnCommunicate;
+
+    @FindBy(xpath = "//input[@value='6']")
+    private WebElement checkBoxReceptionistOnCommunicate;
+
+    @FindBy(xpath = "//input[@value='7']")
+    private WebElement checkBoxSuperAdminOnCommunicate;
+
+    @FindBy(xpath = "/html/body/div[2]/div[1]/section[2]/div/div/div/ul/li[3]/a")
+    private WebElement individualButtonOnSendEmailPage;
+
+    @FindBy(xpath = "//*[@id='individual_form']/div[1]/div/div[2]/div[1]/div/div[1]/button/span[1]")
+    private WebElement dropboxOnMessageToInIndividual;
+
+    @FindBy(xpath = "//*[@id='individual_form']/div[1]/div/div[2]/div[1]/div/div[1]/ul/li[1]")
+    private WebElement studentDropBoxMenuOnIndividual;
+
+    @FindBy(xpath = "//li[@record_id='2']")
+    private WebElement studentRobinPeterson;
+
+    @FindBy(id = "search-query")
+    private WebElement textBoxMessageToInIndividual;
+
+    @FindBy(xpath = "//*[text()='Add']")
+    private WebElement addButtonMessageToInIndividual;
+
+    @FindBy(xpath = "//*[@id='student-2']/i[2]")
+    private WebElement deleteButtonMessageToInIndividual;
 
 
 
@@ -245,8 +301,55 @@ public class OmerPage extends Base{
         sendMailOnSidebar.click();
         String actualComposePageUrl = Driver.getDriver().getCurrentUrl();
         Assert.assertEquals(expectedComposePageUrl,actualComposePageUrl);
-
     }
+
+    public void verifyEmailTitleMessageBoxOnComposePage(){
+        Assert.assertTrue(emailTemplateDropDownMenuOnCommunicate.isEnabled());
+        Assert.assertTrue(titleBoxOnCommunicate.isEnabled());
+        Assert.assertTrue(messageBoxOnCommunicate.isEnabled());
+    }
+
+    public void selectControlCheckBoxesOnComposePage(){
+        checkBoxStudentsOnCommunicate.click();
+        Assert.assertTrue(checkBoxStudentsOnCommunicate.isSelected());
+        checkBoxGuardiansOnCommunicate.click();
+        Assert.assertTrue(checkBoxGuardiansOnCommunicate.isSelected());
+        checkBoxAdminOnCommunicate.click();
+        Assert.assertTrue(checkBoxAdminOnCommunicate.isSelected());
+        checkBoxTeacherOnCommunicate.click();
+        Assert.assertTrue(checkBoxTeacherOnCommunicate.isSelected());
+        checkBoxAccountantOnCommunicate.click();
+        Assert.assertTrue(checkBoxAccountantOnCommunicate.isSelected());
+        checkBoxLibrarianOnCommunicate.click();
+        Assert.assertTrue(checkBoxLibrarianOnCommunicate.isSelected());
+        checkBoxReceptionistOnCommunicate.click();
+        Assert.assertTrue(checkBoxReceptionistOnCommunicate.isSelected());
+        checkBoxSuperAdminOnCommunicate.click();
+        Assert.assertTrue(checkBoxSuperAdminOnCommunicate.isSelected());
+
+        Driver.quitDriver();
+    }
+
+    public void goToIndividualOnSendMailPage(){
+        teacherLoginMethod("omer.faruk.unal@teacher.wonderworldcollege.com","wonderworld123");
+        communicateMenuOnSidebar.click();
+        sendMailOnSidebar.click();
+        individualButtonOnSendEmailPage.click();
+    }
+
+    public void addStudentToMassageAndDeleteMethod(){
+        dropboxOnMessageToInIndividual.click();
+        studentDropBoxMenuOnIndividual.click();
+        Actions actions = new Actions(Driver.getDriver());
+
+        textBoxMessageToInIndividual.sendKeys("Robin");
+        actions.click(studentRobinPeterson).perform();
+        addButtonMessageToInIndividual.click();
+        deleteButtonMessageToInIndividual.click();
+        Driver.quitDriver();
+    }
+
+
 
 
 

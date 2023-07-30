@@ -64,6 +64,25 @@ public class OmerStepDefinition {
         omerPage.verifyCommunicateButtonOnSidebar();
     }
 
+    @Given("Verify email Template, titleBox and messageBox on the compose page")
+    public void verify_email_template_title_box_and_message_box_on_the_compose_page() {
+        omerPage.verifyEmailTitleMessageBoxOnComposePage();
+    }
+
+    @Given("Verify selectability of checkboxes")
+    public void verify_selectability_of_checkboxes() {
+        omerPage.selectControlCheckBoxesOnComposePage();
+    }
+
+    @Given("Sign in on the Teacher Admin and go to Individual")
+    public void sign_in_on_the_teacher_admin_and_go_to_individual() {
+        omerPage.goToIndividualOnSendMailPage();
+    }
+    @Given("Verify that any student can be selected and deleted from the list again")
+    public void verify_that_any_student_can_be_selected_and_deleted_from_the_list_again() {
+        omerPage.addStudentToMassageAndDeleteMethod();
+    }
+
 
 
     /*
