@@ -18,7 +18,7 @@ Feature: [US_37] As an administrator (teacher), I want a page where I can create
     * Verify Leaves enrollment was successful
 
 
-
+  @omer
     Scenario: [TC_002-->US_037] (Bug)The "Apply Leave" button opens an "Add Details" window with active fields. Upon filling in the required information and clicking Save, a new leave request is generated.
 
       * Open to the applyLeavePage
@@ -62,7 +62,7 @@ Feature: [US_37] As an administrator (teacher), I want a page where I can create
     * Verify that messages can be sent to those who have a birthday today.
 
 
-  @omer
+
   Scenario: [TC_05-->US_38]  It should be verified that an instant message has been sent to a selected contact.
 
     * Select any Person and send to message an instant
