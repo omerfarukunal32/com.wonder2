@@ -274,7 +274,7 @@ public class OmerPage extends Base{
     @FindBy(xpath = "//input[@value='7']")
     private WebElement checkBoxSuperAdminOnCommunicate;
 
-    @FindBy(xpath = "/html/body/div[2]/div[1]/section[2]/div/div/div/ul/li[3]/a")
+    @FindBy(xpath = "//*[text()='Individual']")
     private WebElement individualButtonOnSendEmailPage;
 
     @FindBy(xpath = "//*[@id='individual_form']/div[1]/div/div[2]/div[1]/div/div[1]/button/span[1]")
@@ -333,7 +333,7 @@ public class OmerPage extends Base{
     private WebElement sendNowButtonOnComposePage;
 
     @FindBy(xpath = "//*[text()='Message Sent Successfully']")
-    private WebElement toastMessageSuccessfully;
+    private WebElement toastMessageSendMessageSuccessfully;
 
     @FindBy(xpath = "//*[@id='individual_email_template']")
     private WebElement emailTemplateDropBoxIndividual;
@@ -347,6 +347,18 @@ public class OmerPage extends Base{
 
     @FindBy(id = "schedule_date_time")
     private WebElement scheduleBox;
+
+    @FindBy(id = "template_id")
+    private WebElement emailTemplateDropDownGroup;
+
+    @FindBy(xpath = "//*[text()=' Schedule']")
+    private WebElement scheduleButtonOnGroup;
+
+    @FindBy(xpath = "//button[text()=' Submit']")
+    private WebElement submitButtonOnGroup;
+
+    @FindBy(xpath = "//*[text()='Schedule message successfully']")
+    private WebElement toastMessageScheduleSuccessfully;
 
     // =========================== [US_37] Methods ===================================
 
@@ -459,7 +471,7 @@ public class OmerPage extends Base{
         ReusableMethods.bekle(2);
 
         submitButtonMessageToInIndividual.click();
-        Assert.assertTrue(toastMessageSuccessfully.isDisplayed());
+        Assert.assertTrue(toastMessageSendMessageSuccessfully.isDisplayed());
         // Driver.quitDriver();
 
     }
@@ -468,28 +480,29 @@ public class OmerPage extends Base{
         //teacherLoginMethod("omer.faruk.unal@teacher.wonderworldcollege.com","wonderworld123");
         //communicateMenuOnSidebar.click();
         sendMailOnSidebar.click();
-        individualButtonOnSendEmailPage.click();
-        dropboxOnMessageToInIndividual.click();
-        studentDropBoxMenuOnIndividual.click();
+        //individualButtonOnSendEmailPage.click();
+        //dropboxOnMessageToInIndividual.click();
+        //studentDropBoxMenuOnIndividual.click();
         Actions actions = new Actions(Driver.getDriver());
 
-        textBoxMessageToInIndividual.sendKeys("Robin");
-        ReusableMethods.bekle(2);
-        actions.click(studentRobinPeterson).perform();
-        addButtonMessageToInIndividual.click();
+        //textBoxMessageToInIndividual.sendKeys("Robin");
+        //ReusableMethods.bekle(2);
+        //actions.click(studentRobinPeterson).perform();
+        //addButtonMessageToInIndividual.click();
 
-        emailTemplateDropBoxIndividual.click();
-        Select select = new Select(emailTemplateDropBoxIndividual);
+        checkBoxSuperAdminOnCommunicate.click();
+        emailTemplateDropDownGroup.click();
+        Select select = new Select(emailTemplateDropDownGroup);
         select.selectByIndex(1);
 
-        scheduleButtonIndividualOnComposePage.click();
-        actions.sendKeys(scheduleBox).perform();
+        scheduleButtonOnGroup.click();
+        //actions.sendKeys(scheduleBox).perform();
         scheduleBox.sendKeys("01/10/2024 07:56 pm");
 
         ReusableMethods.bekle(2);
 
-        submitButtonMessageToInIndividual.click();
-        Assert.assertTrue(toastMessageSuccessfully.isDisplayed());
+        submitButtonOnGroup.click();
+        Assert.assertTrue(toastMessageScheduleSuccessfully.isDisplayed());
 
         Driver.quitDriver();
     }
